@@ -27,7 +27,7 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 		text.setBounds(5, 1, 100, 100);
 		add(text);
 		
-		passtx=new JLabel("Contraseña");
+		passtx=new JLabel("ContraseÃ±a");
 		passtx.setBounds(5, 1, 200, 200);
 		add(passtx);
 		
@@ -62,10 +62,10 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 		
 		if(e.getSource()==boton1) {
 												
-			char[] contraseña=pin.getPassword();
+			char[] contraseÃ±a=pin.getPassword();
 			String usuario=usu.getText();
 	
-			validaIngreso(contraseña, usuario);  
+			validaIngreso(contraseÃ±a, usuario);  
 			
 			desactiva();
 			
@@ -87,17 +87,17 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 	}
  
 
-		private void validaIngreso(char[] contraseña, String usuario) {
+		private void validaIngreso(char[] contraseÃ±a, String usuario) {
 			
 			//Regular expressions
-			 if( usuario.equals("") || contraseña.equals("") ){
+			 if( usuario.equals("") || contraseÃ±a.equals("") ){
 			 	JOptionPane.showInternalMessageDialog(this, "Por favor complete todos los campos");
 			 }
 			 else if(!usuario.matches("\\d{8,20}")) {
 				 	JOptionPane.showInternalMessageDialog(this, "Nombre de usuario incorrecto. Debe contener enre 8 y 20 caracteres.");
 			 }
-			 else if( ! (String.valueOf(contraseña)).matches( "[a-zA-Z0-9]{8}" ) ) {
-				 	JOptionPane.showInternalMessageDialog(this, "Contraseña incorrecta. Debe tener 8 caracteres.");
+			 else if( ! (String.valueOf(contraseÃ±a)).matches( "[a-zA-Z0-9]{8}" ) ) {
+				 	JOptionPane.showInternalMessageDialog(this, "ContraseÃ±a incorrecta. Debe tener 8 caracteres.");
 			 }
 			 
 			
@@ -113,9 +113,9 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 		    	
 				 if((user[1].getUsuario().equals(usuario))) {
 					 
-					 if(!(user[1].getClave()).equals(contraseña)) {	
+					 if(!(user[1].getClave()).equals(contraseÃ±a)) {	
 						 
-						 JOptionPane.showInternalMessageDialog(null, "Contraseña incorrecta");
+						 JOptionPane.showInternalMessageDialog(this, "ContraseÃ±a incorrecta");
 					 		}
 				 		} 
 			 		
@@ -124,9 +124,9 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 				 
 				 if((user[2].getUsuario().equals(usuario))) {
 					 
-					 if(!(user[2].getClave()).equals(contraseña)) {	
+					 if(!(user[2].getClave()).equals(contraseÃ±a)) {	
 						 
-						JOptionPane.showInternalMessageDialog(null, "Contraseña incorrecta");
+						JOptionPane.showInternalMessageDialog(this, "ContraseÃ±a incorrecta");
 							}
 				 		} 
 			 		
@@ -135,9 +135,9 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 				 
 					 if((user[3].getUsuario().equals(usuario))) {
 						 
-						 if(!(user[3].getClave()).equals(contraseña)) {	
+						 if(!(user[3].getClave()).equals(contraseÃ±a)) {	
 							 
-							 JOptionPane.showInternalMessageDialog(null, "Contraseña incorrecta");
+							 JOptionPane.showInternalMessageDialog(this, "ContraseÃ±a incorrecta");
 							 	}
 					 		} 
 						
@@ -145,9 +145,9 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 					 
 					if((user[4].getUsuario().equals(usuario))) {
 						 
-						 if(!(user[4].getClave()).equals(contraseña)) {	
+						 if(!(user[4].getClave()).equals(contraseÃ±a)) {	
 							 
-							  JOptionPane.showInternalMessageDialog(null, "Contraseña incorrecta");
+							  JOptionPane.showInternalMessageDialog(this, "ContraseÃ±a incorrecta");
 							  	}
 							} 
 					}
