@@ -65,12 +65,23 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 			char[] contraseña=pin.getPassword();
 			String usuario=usu.getText();
 	
-			validaIngreso(contraseña, usuario);  
+			validado= validaIngreso(contraseña, usuario);
 			
-			desactiva();
+			if(validado==false) intentos++;
 			
-			setTitle("Bienvenid@ "+usuario);
-			JOptionPane.showMessageDialog(this, "Bienvenido");			
+			if(validado==true && intentos<3) {
+				
+				desactiva();
+				setTitle("Bienvenid@ "+usuario);
+				JOptionPane.showMessageDialog(this, "Bienvenido");			
+				//Call Pantalla_movimientos 
+				
+					}
+			if(intentos>=3){
+				
+				desactiva();
+				JOptionPane.showMessageDialog(this, "Se suspenden los privilegios de usuario tras fallar 3 veces consecutivas");
+				}			
 			
 			}
 		      
@@ -89,12 +100,14 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 
 		private void validaIngreso(char[] contraseña, String usuario) {
 			
+			boolean validado=false;
+			
 			//Regular expressions
 			 if( usuario.equals("") || contraseña.equals("") ){
 			 	JOptionPane.showInternalMessageDialog(this, "Por favor complete todos los campos");
 			 }
-			 else if(!usuario.matches("\\d{8,20}")) {
-				 	JOptionPane.showInternalMessageDialog(this, "Nombre de usuario incorrecto. Debe contener enre 8 y 20 caracteres.");
+			 else if(!usuario.matches("[a-zA-Z0-9]{8,20}")) {
+				 	JOptionPane.showInternalMessageDialog(this, "Nombre de usuario incorrecto. Debe contener entre 8 y 20 caracteres.");
 			 }
 			 else if( ! (String.valueOf(contraseña)).matches( "[a-zA-Z0-9]{8}" ) ) {
 				 	JOptionPane.showInternalMessageDialog(this, "Contraseña incorrecta. Debe tener 8 caracteres.");
@@ -102,19 +115,19 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 			 
 			
 			 
-			 
 			 //User existence
 		    else if (usuario==user[1].getUsuario() || usuario==user[2].getUsuario() ||
 		    		 usuario==user[3].getUsuario() || usuario==user[4].getUsuario() ) {
 				 
-		    	 
+		    	 //PORQ NO HICE UN FOR???
 		    	
 		    	//User correct and password incorrect c1
 		    	
 				 if((user[1].getUsuario().equals(usuario))) {
 					 
-					 if(!(user[1].getClave()).equals(contraseña)) {	
-						 
+					 if((user[1].getClave()).equals(contraseña)) validado=true; 
+						
+					 else {					 
 						 JOptionPane.showInternalMessageDialog(this, "Contraseña incorrecta");
 					 		}
 				 		} 
@@ -124,8 +137,9 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 				 
 				 if((user[2].getUsuario().equals(usuario))) {
 					 
-					 if(!(user[2].getClave()).equals(contraseña)) {	
-						 
+					 if((user[2].getClave()).equals(contraseña)) validado=true; 
+					 
+					 else{	
 						JOptionPane.showInternalMessageDialog(this, "Contraseña incorrecta");
 							}
 				 		} 
@@ -135,8 +149,9 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 				 
 					 if((user[3].getUsuario().equals(usuario))) {
 						 
-						 if(!(user[3].getClave()).equals(contraseña)) {	
-							 
+						 if((user[3].getClave()).equals(contraseña))  validado=true; 
+						 
+						 else{	 
 							 JOptionPane.showInternalMessageDialog(this, "Contraseña incorrecta");
 							 	}
 					 		} 
@@ -145,14 +160,15 @@ public class Pantalla_banco extends JFrame implements ActionListener{
 					 
 					if((user[4].getUsuario().equals(usuario))) {
 						 
-						 if(!(user[4].getClave()).equals(contraseña)) {	
-							 
+						 if((user[4].getClave()).equals(contraseña)) validado=true; 
+						 
+						 else{	
 							  JOptionPane.showInternalMessageDialog(this, "Contraseña incorrecta");
 							  	}
 							} 
 					}
-		
-				 
+			 	
+				return validado; 
 			 }
 		
 		private void desactiva() {
